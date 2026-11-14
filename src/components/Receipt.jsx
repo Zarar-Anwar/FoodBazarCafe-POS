@@ -10,7 +10,7 @@ export default function Receipt({ order, settings, id = 'receipt-print' }) {
   return (
     <div
       id={id}
-      className="receipt-print-root bg-white text-black p-5 font-mono max-w-sm mx-auto"
+      className="receipt-print-root bg-white text-black p-5 font-mono max-w-sm mx-auto text-center"
     >
       <div className="text-center border-b-2 border-dashed border-black pb-3 mb-3">
         <p className="font-black text-xl uppercase tracking-wide">
@@ -34,17 +34,16 @@ export default function Receipt({ order, settings, id = 'receipt-print' }) {
           {order.customer_phone ? ` · ${formatPhone(order.customer_phone)}` : ''}
         </p>
       )}
-      <div className="border-t-2 border-dashed border-black pt-2 space-y-2">
+      <div className="border-t-2 border-dashed border-black pt-2 space-y-3">
         {order.items?.map((item) => (
-          <div key={item.id} className="flex justify-between gap-3 text-sm font-bold">
-            <span>
-              {item.product_name} × {item.quantity}
-            </span>
-            <span className="whitespace-nowrap">{money(item.line_total, sym)}</span>
+          <div key={item.id} className="text-sm font-bold text-center">
+            <p>{item.product_name}</p>
+            <p>x{item.quantity}</p>
+            <p>{money(item.line_total, sym)}</p>
           </div>
         ))}
       </div>
-      <div className="border-t-2 border-dashed border-black mt-3 pt-2 space-y-1 text-sm font-bold">
+      <div className="border-t-2 border-dashed border-black mt-3 pt-2 space-y-1 text-sm font-bold text-center">
         {order.discount > 0 && (
           <>
             <div className="flex justify-between">
@@ -65,9 +64,9 @@ export default function Receipt({ order, settings, id = 'receipt-print' }) {
             <span>{money(order.tax_amount, sym)}</span>
           </div>
         )}
-        <div className="flex justify-between font-black text-lg pt-2">
-          <span>TOTAL</span>
-          <span>{money(order.total, sym)}</span>
+        <div className="font-black text-lg pt-2">
+          <p>TOTAL</p>
+          <p>{money(order.total, sym)}</p>
         </div>
         {order.payment_status === 'unpaid' ? (
           <div className="flex justify-between font-black pt-2">
