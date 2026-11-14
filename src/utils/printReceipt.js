@@ -25,6 +25,7 @@ export function printReceipt(order, settings = {}) {
     for (const part of wrapCenter(text)) lines.push(part);
   };
 
+  add(order.payment_status === 'unpaid' ? 'Bill pending' : 'Thank You For Order');
   add(name);
   if (tagline) add(tagline);
   add(address);
@@ -79,8 +80,6 @@ export function printReceipt(order, settings = {}) {
     }
   }
 
-  lines.push(dash());
-  add(order.payment_status === 'unpaid' ? 'Bill pending' : 'Thank You For Order');
   lines.push('');
   lines.push('');
 

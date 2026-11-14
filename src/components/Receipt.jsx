@@ -88,11 +88,6 @@ export default function Receipt({ order, settings, id = 'receipt-print' }) {
           </>
         )}
       </div>
-      <p className="text-center text-sm font-bold mt-5 pt-3 border-t-2 border-dashed border-black">
-        {order.payment_status === 'unpaid'
-          ? 'Kitchen chit · Bill pending'
-          : 'Thank You For Order'}
-      </p>
     </div>
   );
 }
